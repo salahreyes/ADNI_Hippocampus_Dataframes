@@ -1,13 +1,10 @@
-```{r}
+
 file_list <- list.files(path = "/Volumes/LeCie/HippunFold_Outputs/Screening", 
                         pattern = "*volumes*.tsv", 
                         full.names = TRUE, 
                         recursive = TRUE)
 file_list
-```
 
-
-```{r}
 # Empty data frame
 volumes_dt <- data.frame(NULL)
 
@@ -32,5 +29,4 @@ for(file in file_list){
 }
 
 
-```
 
