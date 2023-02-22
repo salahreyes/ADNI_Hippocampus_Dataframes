@@ -1,3 +1,8 @@
+#load necessary libraries
+library(dplyr)
+library(tidyr)
+library(data.table)
+
 
 file_list <- list.files(path = "/Volumes/LeCie/HippunFold_Outputs/Screening", 
                         pattern = "*volumes*.tsv", 
@@ -28,5 +33,6 @@ for(file in file_list){
   volumes_dt <- dplyr::bind_rows(volumes_dt, temp_dt)
 }
 
-
-
+volumes_dt <- volumes_dt %>%
+  pivot_wider(names_from = hemi, values_from = c("Sub", "CA1", "CA2", "CA3", "CA4", "DG", "SRLM", "Cyst"),
+              names_prefix = "volumes_")
