@@ -5,20 +5,20 @@ library(data.table)
 
 # Variables that will be used for dplyr for dataframe.
 
-#Month_12_Files are in Seagate Drive. 
+#Month_36_Files are in Seagate Drive. 
 # Create variable that searches for TSV files in respective directory.
-file_list_month12 <- list.files(path = "D:\HippUnfold_Outputs\Month_12", 
-                        pattern = "*volumes*.tsv", 
-                        full.names = TRUE, 
-                        recursive = TRUE)
-file_list_month12
+file_list_month36 <- list.files(path = "D:/HippUnfold_Outputs/Month_36", 
+                                pattern = "*volumes*.tsv", 
+                                full.names = TRUE, 
+                                recursive = TRUE)
+file_list_month36
 
 # Empty data frame
-volumes_dt_month12 <- data.frame(NULL)
+volumes_dt_month36 <- data.frame(NULL)
 
-for(file in file_list_month12){
+for(file in file_list_month36){
   # Read the file
-  temp_dt_month12 <- data.table::fread(file, na.strings = c("NA", "NaN", "", "?"))
+  temp_dt_month36 <- data.table::fread(file, na.strings = c("NA", "NaN", "", "?"))
   
   # Change the subject's ID from BIDS' to ADNI's
   
@@ -29,16 +29,15 @@ for(file in file_list_month12){
   b <- strsplit(a, 
                 split = "-")
   # Assign ID
-  temp_dt_month12$subject <- substring(b[[1]][2], 
-                               first = 1, 
-                               last=10)
+  temp_dt_month36$subject <- substring(b[[1]][2], 
+                                       first = 1, 
+                                       last=10)
   
-  volumes_dt_month12 <- dplyr::bind_rows(volumes_dt_month12, temp_dt_month12)
+  volumes_dt_month36 <- dplyr::bind_rows(volumes_dt_month36, temp_dt_month36)
 }
 # Modify the dataframe
-volumes_dt_month12 <- 
-  volumes_dt_month12 %>%
+volumes_dt_month36 <- 
+  volumes_dt_month36 %>%
   # Make the dataframe wider
   pivot_wider(names_from = hemi, values_from = c("Sub", "CA1", "CA2", "CA3", "CA4", "DG", "SRLM", "Cyst"),
               names_prefix = "volumes_")  # forward-pipe operator was missing that is used for chaining commands 
-  

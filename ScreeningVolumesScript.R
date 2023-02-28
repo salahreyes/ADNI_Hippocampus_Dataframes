@@ -7,16 +7,16 @@ library(data.table)
 gdsphase1 <- GDSValues_Phase1
 
 # Create variable that searches for TSV files in respective directory.
-file_list <- list.files(path = "/Volumes/LeCie/HippunFold_Outputs/Screening", 
+file_list_screening <- list.files(path = "/Volumes/LeCie/HippunFold_Outputs/Screening", 
                         pattern = "*volumes*.tsv", 
                         full.names = TRUE, 
                         recursive = TRUE)
-file_list
+file_list_screening
 
 # Empty data frame
-volumes_dt <- data.frame(NULL)
+volumes_dt_screening <- data.frame(NULL)
 
-for(file in file_list){
+for(file in file_list_screening){
   # Read the file
   temp_dt <- data.table::fread(file, na.strings = c("NA", "NaN", "", "?"))
   
@@ -33,11 +33,11 @@ for(file in file_list){
                                first = 1, 
                                last=10)
   
-  volumes_dt <- dplyr::bind_rows(volumes_dt, temp_dt)
+  volumes_dt_screening <- dplyr::bind_rows(volumes_dt_screening, temp_dt)
 }
 # Modify the dataframe
-volumes_dt <- 
-  volumes_dt %>%
+volumes_dt_screening <- 
+  volumes_dt_screening %>%
   # Make the dataframe wider
   pivot_wider(names_from = hemi, values_from = c("Sub", "CA1", "CA2", "CA3", "CA4", "DG", "SRLM", "Cyst"),
               names_prefix = "volumes_") %>% # forward-pipe operator was missing that is used for chaining commands 
