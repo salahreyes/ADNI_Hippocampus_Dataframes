@@ -1,0 +1,285 @@
+subject,Sex,Age,GDSCALE Total Score,Description
+002_S_0295,M,84.9,1,B1-Calibration Body
+002_S_0413,F,76.4,0,B1-Calibration PA
+002_S_0685,F,89.7,2,B1-Calibration PA
+002_S_0729,F,65.3,1,B1-Calibration PA
+002_S_1155,M,58,1,B1-Calibration PA
+002_S_1261,F,71.3,4,B1-Calibration Body
+002_S_1268,M,82.8,3,B1-Calibration Body
+002_S_1280,F,70.8,0,B1-Calibration PA
+003_S_0907,F,88.8,0,B1-calibration Head
+003_S_0908,F,63,1,B1-calibration Head
+003_S_0981,F,84.4,0,B1-calibration Head
+003_S_1057,F,61.4,1,B1-calibration Body
+003_S_1074,F,85.2,0,B1-calibration Head
+003_S_1122,F,76.8,0,B1-calibration Head
+005_S_0448,M,85.7,1,B1-Calibration Body
+005_S_0546,M,79.6,1,B1-Calibration Body
+005_S_0553,M,84.8,0,B1-Calibration Body
+005_S_0572,M,78.9,2,B1-Calibration PA
+005_S_0602,M,71,0,B1-Calibration PA
+005_S_0610,M,79.2,0,B1-Calibration Body
+006_S_0498,M,70.6,1,B1-Calibration PA
+006_S_0731,M,71.7,0,B1-Calibration Body
+006_S_1130,F,71.2,1,3-plane localizer
+007_S_0041,F,71,2,3-plane localizer
+007_S_0068,F,74.6,1,3-plane localizer
+007_S_0101,M,73.7,0,3-plane localizer
+007_S_0128,F,64.2,1,3-plane localizer
+007_S_0249,F,72,2,3-plane localizer
+007_S_0344,M,78.9,0,3-plane localizer
+007_S_0698,M,74.4,2,3-plane localizer
+007_S_1206,M,73,1,3-plane localizer
+007_S_1222,F,73.4,0,3-plane localizer
+009_S_0751,M,70.9,1,MP RAGE
+009_S_0842,M,73.7,0,MP RAGE
+009_S_0862,F,73.5,2,MP RAGE
+009_S_1030,M,67.6,0,MP RAGE
+010_S_0419,M,70.3,0,ADNI       Survey
+010_S_0420,M,73.6,1,MPRAGE
+011_S_0021,F,72.7,1,B1-calibration Body
+011_S_0023,M,71.9,1,Localizer
+011_S_0241,M,81.9,0,B1-calibration Head
+011_S_0362,F,70.5,0,B1-calibration Body
+011_S_1080,M,81.5,0,B1-calibration Head
+011_S_1282,F,77.2,1,B1-calibration Body
+013_S_1186,M,83.3,3,B1-calibration Body
+013_S_1276,F,71.9,1,B1-calibration Head
+014_S_0169,F,72.1,2,B1-Calibration PA
+014_S_0519,M,74.2,0,B1-Calibration Body
+014_S_0520,F,77.8,0,B1-Calibration PA
+014_S_0548,F,73.8,1,B1-Calibration PA
+014_S_0558,M,80,0,B1-Calibration Body
+014_S_0563,M,80.8,0,B1-Calibration PA
+014_S_0658,M,72.3,1,B1-Calibration PA
+016_S_0359,F,81.4,0,B1-calibration Head
+016_S_0702,M,85.1,0,B1-calibration Head
+016_S_1117,F,69,1,B1-calibration Head
+016_S_1326,M,66.4,2,B1-calibration Body
+018_S_0043,M,76.4,0,ADNI       MPRAGE-1.2*
+018_S_0055,M,75.7,1,ADNI       MPRAGE-1.2*
+018_S_0142,M,79.3,0,MPRAGE SENS
+020_S_1288,M,60,2,B1-calibration Body
+021_S_0141,M,81.2,1,3-plane localizer
+021_S_0159,F,78,2,MP-RAGE
+021_S_0276,M,71,0,3-plane localizer
+021_S_0337,M,75.9,0,3-plane localizer
+021_S_0424,M,80.7,0,3-plane localizer
+021_S_0626,M,83.3,2,MP-RAGE
+021_S_0984,M,76.7,0,MP-RAGE
+022_S_0096,M,79.8,0,B1-calibration Body
+022_S_0130,M,73.2,1,B1-calibration Head
+022_S_1097,M,73.2,1,B1-calibration Body SAG
+022_S_1351,F,72,0,B1-calibration Body SAG
+023_S_0031,F,77.8,0,B1-calibration Head
+023_S_0042,M,72.9,1,B1-calibration Head
+023_S_0058,M,70.2,0,B1-calibration Head
+023_S_0061,F,77.2,1,B1-calibration Head
+023_S_0081,M,70.7,0,B1-calibration Head
+023_S_0126,F,77.7,2,B1-calibration Body
+023_S_0217,F,83.7,0,B1-calibration Body
+023_S_0331,F,64.7,5,B1-calibration Body
+023_S_0376,M,70.6,3,B1-calibration Body
+023_S_0388,M,71.3,3,B1-calibration Head
+023_S_0625,M,76,3,B1-calibration Body
+023_S_0887,F,73.8,0,B1-calibration Head
+023_S_0926,F,71.2,1,B1-calibration Body
+023_S_1046,M,71.7,0,B1-calibration Body
+023_S_1190,F,76.6,1,B1-calibration Head
+024_S_0985,M,79.8,2,B1-Calibration Body
+024_S_1063,F,78.5,0,B1-Calibration PA
+027_S_0074,M,78.3,0,B1-Calibration Body
+027_S_0116,M,78.5,2,B1-Calibration Body
+027_S_0118,M,80.6,2,B1-Calibration Body
+027_S_0120,M,72.1,2,B1-Calibration Body
+027_S_0256,M,70.3,2,B1-Calibration Body
+027_S_0307,M,78.6,2,B1-Calibration Body
+027_S_0403,M,76.4,0,B1-Calibration Body
+027_S_0408,M,82.3,5,B1-Calibration PA
+027_S_0644,M,75.2,0,B1-Calibration PA
+027_S_0835,M,72.9,1,B1-Calibration PA
+027_S_1045,F,82.7,5,B1-Calibration Body
+027_S_1387,M,85.8,3,B1-Calibration Body
+029_S_0824,F,76.3,1,B1-Calibration Body
+029_S_0843,M,70.7,0,B1-Calibration PA
+029_S_0845,M,80.4,0,B1-Calibration Body
+029_S_0878,M,72.4,2,B1-Calibration PA
+029_S_0914,M,74.8,1,B1-Calibration Body
+029_S_1218,F,85.5,2,B1-Calibration PA
+029_S_1318,F,83,1,B1-Calibration PA
+031_S_0618,M,75,1,"Head,3-P,2D,LOCALIZER"
+031_S_0830,M,70.9,1,MP-RAGE
+031_S_0867,M,71.9,0,MP-RAGE
+031_S_1066,M,72.5,1,MP-RAGE
+032_S_0214,M,65.2,1,MPRAGE
+032_S_0479,F,73.6,0,MPRAGE
+032_S_0677,M,70.9,0,MPRAGE
+032_S_1169,F,72.3,4,MPRAGE
+033_S_0514,M,80.8,0,B1-Calibration PA
+033_S_0734,M,72.6,0,B1-Calibration PA
+033_S_0741,F,80.3,0,B1-Calibration Body
+033_S_0906,F,65.4,0,B1-Calibration Body
+033_S_0920,F,80.1,0,B1-Calibration PA
+033_S_0922,M,68.2,1,B1-Calibration Body
+033_S_0923,M,83.3,1,B1-Calibration Body
+033_S_1016,F,78.5,1,B1-Calibration Body
+033_S_1098,F,72.1,2,B1-Calibration Body
+033_S_1116,M,83.4,0,B1-Calibration Body
+035_S_0156,M,74.2,0,B1-calibration Body
+035_S_0204,F,71.2,2,B1-calibration Body
+035_S_0292,M,76.5,0,B1-calibration Body
+035_S_0555,M,76.7,0,B1-calibration Head
+035_S_0997,F,80.6,1,B1-calibration Body
+036_S_0672,F,62.2,0,B1-calibration Body
+036_S_0673,M,78.4,2,B1-calibration Body
+036_S_0813,M,72.9,0,B1-calibration Head
+036_S_0869,F,83.1,2,B1-calibration Head
+036_S_0945,M,72.4,1,B1-calibration Head
+037_S_0150,M,74,1,MP-RAGE-Repeat
+037_S_0303,M,84.4,1,"Head,3-P,2D,LOCALIZER"
+037_S_0377,M,79.5,0,"Head,3-P,2D,LOCALIZER"
+037_S_0454,F,82,1,"Head,3-P,2D,LOCALIZER"
+037_S_0467,F,81.2,2,"Head,3-P,2D,LOCALIZER"
+037_S_0501,M,78,3,"Head,3-P,2D,LOCALIZER"
+037_S_0539,M,73.5,1,"Head,3-P,2D,LOCALIZER"
+037_S_0552,F,60.2,0,"Head,3-P,2D,LOCALIZER"
+037_S_0588,M,64.3,4,MP-RAGE
+037_S_1078,M,70.7,1,MP-RAGE
+041_S_0125,M,73.8,0,B1-calibration Body
+041_S_0262,M,85.9,4,B1-calibration Head
+041_S_0314,M,72.2,4,B1-calibration Body
+041_S_0679,M,63.1,0,B1-calibration Head
+041_S_1010,M,74.5,3,B1-calibration Head
+041_S_1418,M,81.6,2,B1-calibration Head
+041_S_1425,F,75.6,5,B1-calibration Head
+051_S_1072,F,59.9,0,B1-calibration Body
+051_S_1123,F,76,0,B1-calibration Body
+051_S_1131,M,86.5,1,B1-calibration Head
+051_S_1331,F,76.8,0,B1-calibration Head
+052_S_0671,F,61.1,1,B1-Calibration PA (TE min full)
+052_S_0951,M,84.9,0,B1-Calibration PA
+052_S_0952,F,81.9,1,B1-Calibration PA
+052_S_0989,F,64.4,3,B1-Calibration PA
+052_S_1250,F,73.3,0,B1-Calibration PA
+052_S_1251,F,74.3,0,B1-Calibration PA
+052_S_1346,M,72.7,1,B1-Calibration PA
+052_S_1352,M,86,1,B1-Calibration PA
+053_S_0389,F,71.5,1,B1-Calibration PA
+053_S_0919,M,62.5,1,B1-Calibration PA
+057_S_0934,F,70.1,1,B1-calibration Head
+057_S_1269,M,73.6,0,B1-calibration Body
+067_S_0056,F,69.7,0,B1-calibration Head
+067_S_0059,F,71,0,B1-calibration Body
+067_S_0257,F,78.7,2,B1-calibration Body
+068_S_0127,M,70.8,1,ADNI       MPRAGE
+068_S_0210,F,72.5,0,ADNI       MPRAGE
+068_S_0401,M,64,1,ADNI       MPRAGE
+068_S_0473,M,72.7,1,ADNI       MPRAGE
+068_S_0802,F,81,2,ADNI       MPRAGE
+068_S_0872,M,69.8,1,ADNI       MPRAGE
+072_S_0315,M,71.6,0,MPRAGE SENS
+072_S_1380,M,84.9,3,MPRAGE
+073_S_0089,M,65.2,0,B1-calibration Body
+073_S_0311,F,78.2,0,B1-calibration Head
+073_S_0386,F,72.4,0,B1-calibration Body
+073_S_0746,F,73.9,2,B1-calibration Body
+082_S_0832,M,79.1,1,B1-calibration Body
+082_S_1256,F,71.7,2,B1-calibration Body
+098_S_0160,M,75.3,1,3-plane localizer
+098_S_0171,F,78.4,0,MP-RAGE
+098_S_0172,F,70.7,0,3-plane localizer
+098_S_0269,M,67.2,1,B1-Calibration PA
+098_S_0667,M,69.1,3,B1-Calibration PA
+098_S_0896,M,77,0,B1-Calibration Body
+099_S_0051,M,66.6,1,B1-calibration Body
+099_S_0291,M,79.4,5,B1-calibration Body
+099_S_0352,F,77.1,3,B1-calibration Head
+099_S_1034,M,75.2,1,B1-calibration Head
+100_S_0069,M,73,0,ADNI STUDY MPRAGE1
+100_S_0296,M,79.3,1,Double_TSE
+100_S_1226,M,82.7,3,ADNI-R11   MPRAGE-REPEA
+100_S_1286,F,75.7,0,ADNI-R11   MPRAGE
+114_S_0166,F,72.6,0,B1-calibration Head
+114_S_0173,M,73.3,0,B1-calibration Body
+114_S_0378,F,69.1,1,B1-calibration Head
+114_S_0416,F,72.7,2,B1-calibration Body
+114_S_1106,F,74.1,3,B1-calibration Body
+114_S_1118,M,82.6,0,B1-calibration Head
+116_S_0361,M,74.6,0,"Head,3-P,2D,LOCALIZER"
+116_S_0382,F,75.6,1,"Head,3-P,2D,LOCALIZER"
+116_S_0657,F,77.9,0,MP-RAGE
+116_S_0752,F,82,2,MP-RAGE
+116_S_0834,M,64,4,MP-RAGE
+116_S_1232,F,72.2,0,MP-RAGE
+116_S_1243,M,77.4,0,MP-RAGE
+116_S_1249,F,70.9,0,MP-RAGE
+116_S_1271,M,71.3,2,MP-RAGE
+123_S_0106,F,73.3,2,ADNI       MPRAGE
+123_S_0108,M,78.4,2,ADNI       DOUBLE TSE
+123_S_0113,M,75.3,4,ADNI       MPRAGE
+123_S_0298,M,76.6,1,ADNI       DOUBLE TSE
+123_S_1300,F,73.6,2,ADNI       MPRAGE
+126_S_0605,F,75.7,0,B1-Calibration HEAD
+126_S_0680,M,77.9,3,B1-Calibration HEAD
+126_S_0708,M,76.5,0,B1-Calibration Body
+126_S_0709,M,84,2,B1-Calibration HEAD
+126_S_1077,M,83.4,2,B1-Calibration HEAD
+126_S_1187,M,76.5,0,B1-Calibration Body
+127_S_0112,M,70.8,1,B1-Calibration Body
+127_S_0259,M,70.7,1,B1-Calibration PA
+127_S_0260,F,78.8,0,B1-Calibration Body
+127_S_0622,F,74.7,0,B1-Calibration Body
+127_S_0684,F,77.5,1,B1-Calibration PA
+127_S_0925,M,74.6,1,B1-Calibration PA
+127_S_1032,M,84.8,3,B1-Calibration Body
+127_S_1419,M,78,2,B1-Calibration Body
+127_S_1427,F,69.7,2,B1-Calibration PA
+128_S_0135,F,82.5,5,"Head,3-P,2D,LOCALIZER"
+128_S_0200,M,61.6,2,"Head,3-P,2D,LOCALIZER"
+128_S_0225,F,82.4,1,"Head,3-P,2D,LOCALIZER"
+128_S_0227,F,79.7,1,"Head,3-P,2D,LOCALIZER"
+128_S_0229,F,74.5,2,"Head,3-P,2D,LOCALIZER"
+128_S_0230,M,80.1,0,"Head,3-P,2D,LOCALIZER"
+128_S_0272,F,70.5,0,"Head,3-P,2D,LOCALIZER"
+128_S_0545,M,71.9,0,"Head,3-P,2D,LOCALIZER"
+128_S_0863,M,79.3,0,B1-calibration Body
+128_S_1043,M,68.6,4,B1-calibration Body
+128_S_1242,F,71.2,2,SAG B1 CALIBRATION BODY
+128_S_1407,F,74.7,4,LOC
+129_S_0778,M,72.6,1,MP-RAGE
+129_S_1246,M,72.5,1,MP-RAGE-Repeat
+130_S_0232,M,78.1,1,B1-Calibration PA
+130_S_0285,M,65.8,2,B1-Calibration PA
+130_S_0289,M,67.8,2,B1-Calibration Body
+130_S_0505,M,79.6,4,B1-Calibration PA
+130_S_0886,F,71.4,0,B1-Calibration Body
+130_S_0969,M,70.1,1,B1-Calibration Body
+130_S_1200,M,84.6,4,B1-Calibration Body
+131_S_0123,M,73.4,2,B1-Calibration PA
+131_S_0384,M,79.9,0,B1-Calibration Body
+131_S_0441,F,72.8,0,B1-Calibration PA
+136_S_0086,F,80.4,1,B1-Calibration PA
+136_S_0107,F,60.8,2,B1-Calibration Body
+136_S_0186,F,80.5,2,B1-Calibration PA
+136_S_0695,M,74.4,3,B1-Calibration Body
+136_S_0873,F,78.1,5,B1-Calibration Body
+137_S_0301,F,73.6,1,3-plane localizer
+137_S_0459,M,73,5,3-plane localizer
+137_S_0668,M,73.6,1,MP-RAGE
+137_S_0722,M,70.2,0,MP-RAGE REPEAT
+137_S_0800,M,74.2,3,MP-RAGE
+137_S_0972,M,78,0,MP-RAGE REPEAT
+137_S_0973,M,76.9,0,MP-RAGE
+137_S_0994,F,55.2,1,MP-RAGE REPEAT
+137_S_1414,M,74.5,4,3-plane localizer
+141_S_0717,M,76.3,1,B1-calibration Body
+141_S_0767,F,73.2,1,B1-calibration Body
+141_S_0915,F,80.5,0,B1-calibration Head
+141_S_1004,F,74.1,4,B1-calibration Head
+141_S_1052,F,69.1,5,B1-calibration Head
+141_S_1255,F,76.6,0,B1-calibration Head
+141_S_1378,F,61.9,5,B1-calibration Head
+941_S_1194,M,84.9,5,B1-calibration Head
+941_S_1195,M,77.1,3,B1-calibration Head
+941_S_1202,M,77.6,0,B1-calibration Head
+941_S_1203,M,83.4,1,B1-calibration Head
