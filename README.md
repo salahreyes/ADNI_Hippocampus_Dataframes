@@ -8,4 +8,4 @@ Currently, this project is limited to the first phase of ADNI, which is comprise
 
 MRI data collected in this project is also limited to on-site assessment of the 15-point Geriatric Depression Scale (GDS) at the same visit.
 
-HippUnfold version 1.2.0 <cite> <description> and Freesurfer <version> <cite> was executed on CBRAIN <cite>.
+HippUnfold version 1.2.0 <cite> <description> and Freesurfer <version> <cite> was executed on CBRAIN housed at McGill University in Montreal, Quebec. <cite>
