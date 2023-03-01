@@ -3,7 +3,8 @@ library(dplyr)
 library(tidyr)
 library(data.table)
 
-# Variables that will be used for dplyr for dataframe.
+# Timepoint-contingent variables that will be used for dplyr for dataframe.
+gdsmonth36values <- GDSMonth36
 
 #Month_36_Files are in Seagate Drive. 
 # Create variable that searches for TSV files in respective directory.
@@ -40,4 +41,9 @@ volumes_dt_month36 <-
   volumes_dt_month36 %>%
   # Make the dataframe wider
   pivot_wider(names_from = hemi, values_from = c("Sub", "CA1", "CA2", "CA3", "CA4", "DG", "SRLM", "Cyst"),
-              names_prefix = "volumes_")  # forward-pipe operator was missing that is used for chaining commands 
+              names_prefix = "volumes_", values_fn = list) %>% # forward-pipe operator was missing that is used for chaining commands
+  #Add GDS values
+  dplyr::left_join(x = ., # Since commands are chained, this will be .
+                   y = gdsmonth36values[, c(1, 4)], # Verify if this name is correct cuz in the screenshot I see it's named GDSValues_Phase1. I added the subject column (key) and the target column (GDS).
+                   by = "subject") # Removed the forward-pipe operator here as it led to nothing
+
