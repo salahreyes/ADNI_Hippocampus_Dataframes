@@ -5,6 +5,11 @@ library(data.table)
 
 # Timepoint-contingent variables that will be used for dplyr for dataframe.
 gdsmonth24values <- GDSMonth24
+diagmonth24 < - DxMonth24
+#freesurfervolsmonth24 <- 
+
+# Global variables (sex, education, site) that will be used for dplyr for dataframe.
+globalvalues <- GlobalInfoPhase1
 
 #Month_24_Files are in LeCie Drive. 
 # Create variable that searches for TSV files in respective directory.
@@ -12,12 +17,14 @@ file_list_month24 <- list.files(path = "/Volumes/LeCie/HippunFold_Outputs/Month_
                                 pattern = "*volumes*.tsv", 
                                 full.names = TRUE, 
                                 recursive = TRUE)
+
+# List of Volumes in TSV files found in above directory
 file_list_month24
 
 # Empty data frame
 volumes_dt_month24 <- data.frame(NULL)
 
-for(file in file_list_month12){
+for(file in file_list_month24){
   # Read the file
   temp_dt_month24 <- data.table::fread(file, na.strings = c("NA", "NaN", "", "?"))
   

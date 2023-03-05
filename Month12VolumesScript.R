@@ -42,8 +42,19 @@ volumes_dt_month12 <-
   # Make the dataframe wider
   pivot_wider(names_from = hemi, values_from = c("Sub", "CA1", "CA2", "CA3", "CA4", "DG", "SRLM", "Cyst"),
               names_prefix = "volumes_", values_fn = list) %>% # forward-pipe operator was missing that is used for chaining commands
-  #Add GDS values
-  dplyr::left_join(x = ., # Since commands are chained, this will be .
-                 y = gdsmonth12values[, c(1, 4)], # Verify if this name is correct cuz in the screenshot I see it's named GDSValues_Phase1. I added the subject column (key) and the target column (GDS).
-                 by = "subject") # Removed the forward-pipe operator here as it led to nothing
+ 
+  # Add Age and GDS values
+  dplyr::left_join(x = ., 
+                   y = gdsscreeningvalues[, c(1,3,4)], 
+                   by = "subject") %>%  
+  
+  # Add diagnosis data
+  dplyr::left_join(x =., 
+                   y = diagscreening[, c(4, 12, 13)],
+                   by = "subject") %>% 
+  
+  # Add global values (sex, education and scanner site)
+  dplyr::left_join(x =.,
+                   y = globalvalues[, c(1, 2, 3, 4)],
+                   by = "subject") 
   
