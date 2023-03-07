@@ -1,0 +1,224 @@
+subject,Sex,Age,Global CDR,Description
+002_S_0295,M,89,0,3-plane localizer
+002_S_0413,F,80.4,0,3-plane localizer
+002_S_0685,F,93.8,0,MP-RAGE
+002_S_0729,F,69.3,0.5,MP-RAGE REPEAT
+002_S_1155,M,62.1,0.5,3-plane localizer
+002_S_1261,F,75.3,0,MPRAGE SENSE2
+002_S_1268,M,87,0.5,3 Plane Localizer
+002_S_1280,F,75.1,0,Field Mapping
+003_S_0907,F,93,,localizer
+003_S_0908,F,67.2,0.5,B1-calibration Body
+003_S_0981,F,88.7,0,B1-calibration Body
+003_S_1057,F,65.6,1,localizer
+003_S_1074,F,89.7,0.5,localizer
+003_S_1122,F,81,0.5,MPRAGE
+005_S_0546,M,84.1,0.5,MP-RAGE REPEAT
+005_S_0553,M,89.2,0,3-pl T2* FGRE
+005_S_0602,M,75.6,0,B1-Calibration PA
+005_S_0610,M,83.8,0,MP-RAGE REPEAT
+006_S_0498,M,75.1,0,act_te = 6000 B1-Calibration Body
+006_S_0731,M,76.2,0,B1-Calibration PA
+006_S_1130,F,75.4,1,3-plane localizer
+007_S_0041,F,75.2,1,B1-Calibration PA
+007_S_0068,F,78.7,0,B1-Calibration PA
+007_S_0101,M,77.8,0.5,B1-Calibration Body
+007_S_0128,F,68.3,1,MP-RAGE REPEAT
+007_S_0249,F,76.1,1,B1-Calibration Body
+007_S_0344,M,83.1,1,3-plane localizer
+007_S_0698,M,78.5,0.5,3-plane localizer
+009_S_0842,M,77.9,0,MP-RAGE REPEAT
+009_S_1030,M,71.7,0.5,MP-RAGE
+010_S_0419,M,74.4,0,SURVEY
+010_S_0420,M,77.8,0.5,SURVEY
+011_S_0023,M,76.1,0,B1-calibration Head
+011_S_0241,M,85.9,0.5,B1-calibration Head
+011_S_0362,F,74.7,1,Localizer
+011_S_1080,M,85.6,2,localizer
+011_S_1282,F,81.2,1,MPRAGE
+013_S_1186,M,87.4,0.5,3 Plane Localizer
+014_S_0169,F,76.1,0.5,B1-Calibration Body
+014_S_0519,M,78.5,0,3 PLANE
+014_S_0520,F,82.1,0,3 PLANE
+014_S_0548,F,78,0,B1-Calibration PA
+014_S_0558,M,84.2,0.5,MP-RAGE
+014_S_0563,M,85.1,0.5,3-plane localizer
+014_S_0658,M,76.3,0.5,3-plane localizer
+016_S_0359,F,86,0,MPRAGE Repeat
+016_S_0702,M,89.2,1,Localizer
+016_S_1326,M,70.5,1,Localizer
+018_S_0043,M,80.6,0,B1-calibration Body
+018_S_0055,M,81.2,0.5,Localizer
+018_S_0142,M,83.6,0.5,Localizer
+021_S_0141,M,85.2,1,3-plane localizer
+021_S_0159,F,82.1,0,3-plane localizer
+021_S_0276,M,75,0.5,MP-RAGE REPEAT
+021_S_0337,M,80,0,3-plane localizer
+021_S_0424,M,84.7,0,3-plane localizer
+021_S_0626,M,87.4,0.5,MP-RAGE REPEAT
+021_S_0984,M,80.8,0,MP-RAGE
+022_S_0096,M,83.9,0,MPRAGE Repeat
+022_S_0130,M,77.4,0,B1-calibration Body
+022_S_1097,M,77.3,0.5,MPRAGE SAGITTAL
+022_S_1351,F,76.1,1,B1-calibration Body
+023_S_0031,F,81.9,0,B1-calibration Head
+023_S_0042,M,77.3,1,B1-calibration Head
+023_S_0058,M,74.5,0,MPRAGE
+023_S_0061,F,81.5,0,MPRAGE Repeat
+023_S_0081,M,74.9,0,B1-calibration Body
+023_S_0126,F,81.8,0.5,MPRAGE
+023_S_0217,F,87.8,1,B1-calibration Body
+023_S_0331,F,68.8,1,B1-calibration Head
+023_S_0376,M,74.7,0.5,MPRAGE
+023_S_0388,M,75.3,2,B1-calibration Body
+023_S_0625,M,80.3,2,B1-calibration Head
+023_S_0887,F,77.8,1,MPRAGE Repeat
+023_S_0926,F,75.6,0,B1-calibration Head
+023_S_1046,M,76,0.5,MPRAGE
+024_S_0985,M,85.9,0,B1-Calibration PA
+024_S_1063,F,82.5,0.5,MP-RAGE REPEAT
+027_S_0074,M,82.4,0,B1-Calibration Body
+027_S_0116,M,82.6,0.5,B1-Calibration Body
+027_S_0118,M,84.6,0.5,B1-Calibration PA
+027_S_0120,M,76.2,0,3-plane localizer
+027_S_0256,M,74.3,2,MP-RAGE
+027_S_0307,M,82.7,0.5,B1-Calibration PA
+027_S_0403,M,80.4,0,3-plane localizer
+027_S_0408,M,86.4,1,MP-RAGE
+027_S_0644,M,79.2,,3-plane localizer
+027_S_0835,M,76.9,0.5,MP-RAGE REPEAT
+027_S_1045,F,86.7,0.5,B1-Calibration PA
+027_S_1387,M,89.8,1,3-plane localizer
+029_S_0824,F,80.4,0,MP-RAGE
+029_S_0845,M,84.6,0.5,3-plane localizer
+029_S_0878,M,76.8,1,B1-Calibration Body
+029_S_0914,M,78.8,0.5,B1-Calibration PA
+029_S_1218,F,89.6,0.5,MP-RAGE
+029_S_1318,F,87.3,0.5,3-plane localizer
+031_S_0618,M,79,0,MPRAGE_ASO
+031_S_0830,M,75,1,SURVEY
+031_S_0867,M,76,0.5,SURVEY
+031_S_1066,M,76.6,3,MPRAGE_ASO_repeat
+032_S_0214,M,69.6,0.5,B1 calibration Body
+032_S_0479,F,77.7,0,B1 calibration Body
+032_S_0677,M,75,0,B1 calibration Body
+032_S_1169,F,76.4,0,MPRAGE Repeat
+033_S_0514,M,84.9,0.5,3-plane localizer
+033_S_0734,M,76.7,0,3-plane localizer
+033_S_0741,F,84.4,0,MP-RAGE REPEAT
+033_S_0906,F,69.4,2,MP-RAGE
+033_S_0920,F,84.2,0,B1-Calibration PA
+033_S_0922,M,72.3,1,B1-Calibration Body
+033_S_0923,M,87.4,0,B1-Calibration Body
+033_S_1016,F,82.5,0,3-plane localizer
+033_S_1098,F,76.1,0,3-plane localizer
+035_S_0156,M,78.3,0,Localizer
+035_S_0204,F,75.2,1,B1-calibration Head
+035_S_0292,M,80.6,0.5,B1-calibration Body
+035_S_0555,M,81.3,0,B1-calibration Body
+035_S_0997,F,84.7,0.5,MPRAGE
+036_S_0672,F,66.6,0,MPRAGE
+036_S_0673,M,82.7,0.5,localizer
+036_S_0813,M,77,0,B1-calibration Head
+036_S_0869,F,87.1,1,B1-calibration Head
+036_S_0945,M,76.6,0.5,B1-calibration Head
+037_S_0303,M,88.9,-1,MP-RAGE
+037_S_0377,M,84.3,0.5,MP-RAGE-Repeat
+037_S_0467,F,85.1,0.5,MP-RAGE-Repeat
+037_S_0539,M,77.5,,MP-RAGE
+037_S_1078,M,74.8,0.5,MP-RAGE
+041_S_0125,M,78,0.5,localizer
+041_S_0262,M,90,0.5,B1-calibration Head
+041_S_0314,M,76.4,0.5,B1-calibration Body
+041_S_0679,M,67.1,0.5,MPRAGE Repeat
+041_S_1010,M,78.5,1,localizer
+051_S_1072,F,64.6,0,B1-calibration Head
+051_S_1123,F,80.6,0,localizer
+051_S_1131,M,91.2,0.5,MPRAGE Repeat
+051_S_1331,F,81.1,1,localizer
+052_S_0951,M,89.1,0,MP-RAGE
+052_S_0952,F,86,2,3-plane localizer
+052_S_0989,F,68.6,0.5,3-plane localizer
+052_S_1250,F,77.4,0,B1-Calibration Body
+052_S_1251,F,78.4,,B1-Calibration PA
+052_S_1346,M,76.7,1,3-plane localizer
+052_S_1352,M,90.1,0,B1-Calibration PA
+053_S_0389,F,75,,MP-RAGE REPEAT
+053_S_0919,M,66.6,0.5,B1-Calibration PA
+057_S_1269,M,77.6,0.5,B1-calibration Body
+067_S_0257,F,83,0,MPRAGE
+068_S_0127,M,75,0,ADNI SH    MPRAGE ASO
+068_S_0210,F,76.7,0,ADNI SH    MPRAGE ASO
+068_S_0401,M,68.1,0,ADNI SH    MPRAGE ASO
+068_S_0473,M,76.7,0,ADNI SH    MPRAGE ASOX2
+068_S_0802,F,85.4,0,ADNI SH    SURVEY
+072_S_0315,M,75.7,0,MPRAGE ASO
+073_S_0089,M,69.9,0,Localizer
+073_S_0311,F,82.4,0,MPRAGE
+073_S_0386,F,76.6,0,Localizer
+082_S_0832,M,83.4,,localizer
+098_S_0160,M,79.4,0.5,B1-Calibration Body
+098_S_0171,F,82.4,0,MP-RAGE REPEAT
+098_S_0172,F,74.9,0,B1-Calibration Body
+098_S_0269,M,71.3,2,3-plane localizer
+098_S_0667,M,73.2,2,B1-Calibration PA
+098_S_0896,M,81.1,0,3-plane localizer
+099_S_0352,F,81.2,0,localizer(VIT E R TEMPLE)
+099_S_1034,M,79.3,0.5,B1-calibration Body
+100_S_1226,M,86.8,0.5,ASO-MPRAGE 2
+100_S_1286,F,79.7,0,ASO-MPRAGE 2
+116_S_0361,M,78.6,0.5,MP-RAGE-Repeat
+116_S_0382,F,79.9,0,MP-RAGE-Repeat
+116_S_0657,F,82,0,MP-RAGE
+116_S_0752,F,86.1,1,MP-RAGE
+116_S_0834,M,68.1,2,MP-RAGE-Repeat
+116_S_1232,F,76.3,0,MP-RAGE-Repeat
+116_S_1243,M,81.5,1,3-pl T2* FGRE
+116_S_1249,F,75,0,MP-RAGE-Repeat
+123_S_0106,F,77.3,0,MPRAGEASO
+123_S_0108,M,82.5,1,MPRAGEASO
+123_S_0113,M,79.4,0,*SCOUT
+123_S_0298,M,80.6,0,*SCOUT
+123_S_1300,F,77.6,0.5,*SCOUT
+126_S_0605,F,79.7,0,3-plane localizer
+126_S_0680,M,81.9,0.5,MP-RAGE REPEAT
+126_S_0708,M,80.5,1,MP-RAGE
+126_S_0709,M,87,,3-plane localizer
+126_S_1187,M,80.6,0,3-plane localizer
+127_S_0112,M,74.8,0.5,B1-Calibration Body
+127_S_0259,M,74.7,0,MP-RAGE REPEAT
+127_S_0260,F,82.9,0,B1-Calibration Body
+127_S_0622,F,78.7,0.5,B1-Calibration Body
+127_S_0925,M,78.7,0.5,3-plane localizer
+127_S_1032,M,88.9,0.5,MP-RAGE
+128_S_0135,F,87.1,1,SAG 3D MPRAGE
+128_S_0200,M,66.3,0.5,REPEAT SAG 3D MP RAGE
+128_S_0225,F,87.2,0,REPEAT SAG 3D MP RAGE
+128_S_0227,F,84.6,1,SAG 3D MPRAGE
+128_S_0229,F,79.1,,LOC
+128_S_0272,F,75,0,LOC
+128_S_0545,M,76.3,0,LOC
+128_S_0863,M,83.7,0,LOC
+129_S_0778,M,76.8,0.5,3-plane localizer
+130_S_0285,M,69.8,0.5,MP-RAGE REPEAT
+130_S_0505,M,84,0.5,MP-RAGE
+130_S_0969,M,74.2,0,MP-RAGE REPEAT
+131_S_0123,M,77.5,0,B1-Calibration PA
+131_S_0384,M,84.1,0,B1-Calibration Body
+131_S_0441,F,76.8,0,B1-Calibration PA
+136_S_0086,F,84.6,0,3-plane localizer
+136_S_0107,F,65.2,0.5,B1-Calibration PA
+136_S_0186,F,84.8,0,B1-Calibration PA
+136_S_0873,F,82.2,1,B1-Calibration Body
+137_S_0668,M,77.7,0,3-plane localizer
+137_S_0722,M,74.5,0,MP-RAGE
+137_S_0800,M,78.2,0.5,3-plane localizer
+137_S_0972,M,82,0.5,MP-RAGE
+137_S_0973,M,81,,3-plane localizer
+137_S_0994,F,59.3,1,3-plane localizer
+141_S_0717,M,80.7,0.5,B1-calibration Body
+141_S_0767,F,77.4,0,B1-calibration Head
+141_S_1052,F,73.1,0.5,MPRAGE
+141_S_1255,F,80.7,0.5,MPRAGE
+941_S_1194,M,89.1,0.5,ADNI_gre_field_mapping
+941_S_1195,M,81.2,0,localizer

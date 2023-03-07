@@ -3,10 +3,11 @@ library(dplyr)
 library(tidyr)
 library(data.table)
 
-# Timepoint-contingent variables that will be used for dplyr for dataframe. (GDS, age, Dx)
+# Timepoint-contingent variables that will be used for dplyr for dataframe. (GDS, age, Dx, CDR)
 gdsscreeningvalues <- GDSScreening # This includes age
 diagscreening <- DxScreening # Has info on dementia diagnosis as well as conversion status from previous timepoint.
 freesurfvols <- examplefreesurfoutput
+cdrsscreeningvalues <- CDR_Screening
 
 # Global variables (sex, education, site) that will be used for dplyr for dataframe.
 globalvalues <- GlobalInfoPhase1
@@ -57,10 +58,20 @@ volumes_dt_screening <-
                    by = "subject") %>% 
   
   
-   #Add Age and GDS values
+   # Add Age and GDS values
   dplyr::left_join(x = ., 
                    y = gdsscreeningvalues[, c(1,3,4)], 
-                   by = "subject") %>%  
+                   by = "subject") %>%
+  
+  # Add Diagnosis values, not including conversion since ommitting 6 month time points.
+  dplyr::left_join(x =.,
+                   y = diagscreening[, c(4, 12)],
+                   by = "subject") %>% 
+  
+  # Add CDR values
+  dplyr::left_join(x =.,
+                   y = cdrsscreeningvalues[, c(1, 4)],
+                   by = "subject") %>% 
   
   
   # Add global values (sex, education and scanner site)
@@ -69,11 +80,11 @@ volumes_dt_screening <-
                    by = "subject") 
 
 # Create a subset of the first 5 rows of the data
-subset_data <- volumes_dt_screening[1:5, ]
+subset_data <- as.data.frame(volumes_dt_screening[1:5, ])
 
 #Change columns that were characters to factors so that residual function can work 
-subset_data$Sex <- factor(subset_data$Sex)
-subset_data$Scanner_Site <- factor(subset_data$Sex)
+subset_data$Sex <- as.numeric(as.factor(subset_data$Sex))
+subset_data$Scanner_Site <- as.numeric(as.factor(subset_data$Scanner_Site))
 
 #This is the previous residual function, but it was not working as lapply was passing 'y' columns as lists.
 #vol_resid_func <- function(y) resid(lm(y ~ subset_data$EstimatedTotalIntraCranialVol + subset_data$eWBV + subset_data$Age + subset_data$Sex + subset_data$Education + subset_data$Scanner_Site, data = subset_data))
@@ -83,8 +94,44 @@ vol_resid_func <- function(y) {
   y <- unlist(y)
   resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = subset_data))
 }
+
+
 #Apply the function to the subset of data using lapply() 
 vol_resid <- as.data.frame(lapply(subset_data[2:17], vol_resid_func))
+
+# Test trying to make residuals from original datframe, leaving out freesurfer data since not ready.
+vol_resid_func <- function(y) {
+  y <- unlist(y)
+  resid(lm(y ~ Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
+}
+
+# Test trying to use the data on the original dataframe
+vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
+vol_resid_func <- function(y) {
+  resid(lm(y ~ Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
+}
+
+# Apply the function to each column of the data frame
+vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
+
+vol_resid_func <- function(y) {
+  y <- unlist(y)
+  lm_obj <- lm(y ~ Age + Sex + Education + Scanner_Site, data = na.omit(volumes_dt_screening))
+  resid(lm_obj)
+}
+
+vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
+
+
+
+vol_resid_func <- function(y, data) {
+  y <- unlist(y)
+  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = data))
+}
+
+#Apply the function to the subset of data using lapply() 
+vol_resid <- as.data.frame(lapply(subset_data[2:17], vol_resid_func, data = subset_data))
+
 
 #Add the subject column
 vol_resid$subject <- subset_data$subject 
