@@ -6,7 +6,7 @@ library(data.table)
 # Timepoint-contingent variables that will be used for dplyr for dataframe. (GDS, age, Dx, CDR)
 gdsscreeningvalues <- GDSScreening # This includes age
 diagscreening <- DxScreening # Has info on dementia diagnosis as well as conversion status from previous timepoint.
-freesurfvols <- examplefreesurfoutput
+freesurfvols <- freesurferscreening
 cdrsscreeningvalues <- CDR_Screening
 
 # Global variables (sex, education, site) that will be used for dplyr for dataframe.
@@ -79,58 +79,80 @@ volumes_dt_screening <-
                    y = globalvalues[, c(1, 2, 3, 4)],
                    by = "subject") 
 
-# Create a subset of the first 5 rows of the data
-subset_data <- as.data.frame(volumes_dt_screening[1:5, ])
+# Make sure it is a dataframe 
+nolistvolumes_dt_screening <- as.data.frame(volumes_dt_screening)
 
 #Change columns that were characters to factors so that residual function can work 
-subset_data$Sex <- as.numeric(as.factor(subset_data$Sex))
-subset_data$Scanner_Site <- as.numeric(as.factor(subset_data$Scanner_Site))
+volumes_dt_screening$Sex <- as.numeric(as.factor(volumes_dt_screening$Sex))
+volumes_dt_screening$Scanner_Site <- as.numeric(as.factor(volumes_dt_screening$Scanner_Site))
 
 #This is the previous residual function, but it was not working as lapply was passing 'y' columns as lists.
-#vol_resid_func <- function(y) resid(lm(y ~ subset_data$EstimatedTotalIntraCranialVol + subset_data$eWBV + subset_data$Age + subset_data$Sex + subset_data$Education + subset_data$Scanner_Site, data = subset_data))
+vol_resid_func <- function(y) resid(lm(y ~ volumes_dt_screening$EstimatedTotalIntraCranialVol + volumes_dt_screening$eWBV + volumes_dt_screening$Age + volumes_dt_screening$Sex + volumes_dt_screening$Education + volumes_dt_screening$Scanner_Site, data = volumes_dt_screening))
 
 #This is the residual function that seems to work.
 vol_resid_func <- function(y) {
   y <- unlist(y)
-  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = subset_data))
+  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
 }
 
+#Modfiication, removed NA data
+vol_resid_func <- function(y) {
+  y <- na.omit(unlist(y))
+  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
+}
+
+vol_resid_func <- function(y) {
+  y <- unlist(y)
+  print(length(y))
+  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
+}
+
+vol_resid_func <- function(y) {
+  y <- na.omit(unlist(y))
+  print(length(y))
+  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
+}
 
 #Apply the function to the subset of data using lapply() 
-vol_resid <- as.data.frame(lapply(subset_data[2:17], vol_resid_func))
-
-# Test trying to make residuals from original datframe, leaving out freesurfer data since not ready.
-vol_resid_func <- function(y) {
-  y <- unlist(y)
-  resid(lm(y ~ Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
-}
-
-# Test trying to use the data on the original dataframe
-vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
-vol_resid_func <- function(y) {
-  resid(lm(y ~ Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
-}
-
-# Apply the function to each column of the data frame
 vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
 
-vol_resid_func <- function(y) {
-  y <- unlist(y)
-  lm_obj <- lm(y ~ Age + Sex + Education + Scanner_Site, data = na.omit(volumes_dt_screening))
-  resid(lm_obj)
-}
-
-vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
-
-
+# I might want to apply it to the dependent variables that are numeric
+vol_resid <- as.data.frame(lapply(volumes_numerical[1:16], vol_resid_func))
 
 vol_resid_func <- function(y, data) {
-  y <- unlist(y)
   resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = data))
 }
 
-#Apply the function to the subset of data using lapply() 
-vol_resid <- as.data.frame(lapply(subset_data[2:17], vol_resid_func, data = subset_data))
+# Here I am trying to make the forumula work with the new dataframe that is numeric.
+
+volumes_numerical <- data.frame(NULL)
+
+volumes_numerical <- volumes_dt_screening[, 2:17]
+volumes_numerical <- apply(volumes_numerical, 2, function(x) as.numeric(unlist(x)))
+volumes_numerical <- as.data.frame(volumes_numerical)
+volumes_numerical <- cbind(volumes_numerical, 
+                           EstimatedTotalIntraCranialVol = volumes_dt_screening$EstimatedTotalIntraCranialVol,
+                           eWBV = volumes_dt_screening$eWBV,
+                           Age = volumes_dt_screening$Age,
+                           Sex = volumes_dt_screening$Sex,
+                           Education = volumes_dt_screening$Education,
+                           Scanner_Site = volumes_dt_screening$Scanner_Site)
+
+
+volumes_numerical <- as.data.frame(volumes_numerical)
+
+vol_resid_func <- function(y) {
+  lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_numerical)$resid
+}
+
+vol_resid <- as.data.frame(lapply(volumes_numerical[1:16], vol_resid_func))
+
+
+
+
+
+
+
 
 
 #Add the subject column
@@ -149,6 +171,31 @@ sumvol_resid <- vol_resid_func(subset_data$Cyst_volumes_L)
 summary(sumvol_resid)
 
 
+length(volumes_dt_screening$EstimatedTotalIntraCranialVol)
 
+#I am going to try and turn all values to numeric in dataframe
+# Loop through all columns and convert to numeric
+
+# Convert list columns to numeric
+# Copy columns 2 to 17 to a new dataframe
+volumes_numerical <- volumes_dt_screening[, 2:17]
+
+# Convert the data in the new dataframe to numerical values
+volumes_numerical <- apply(volumes_numerical, 2, function(x) as.numeric(unlist(x)))
+
+
+
+vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
+
+vol_resid_func <- function(y) {
+  y <- unlist(y)
+  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV, data = volumes_dt_screening))
+}
+
+vol_resid_func <- function(y) {
+  y <- unlist(y)
+  res <- resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV, data = volumes_dt_screening))
+  return(list(y = y, res = res))
+}
 
 
