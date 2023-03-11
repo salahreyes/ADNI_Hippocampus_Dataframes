@@ -132,6 +132,11 @@ vol_resid <-
   vol_resid %>% 
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
+# Save vol_resid as vol_resid.csv
+write.csv(vol_resid, file = "vol_resid.csv", row.names = FALSE)
+
+# Save volumes_numerical as volumes_numerical.csv
+write.csv(volumes_numerical, file = "volumes_numerical.csv", row.names = FALSE)
 
 
 
