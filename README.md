@@ -4,7 +4,7 @@ HippUnfold Data of Alzheimer's Disease Neuroimaging Initative (ADNI)
 
 ---
 
-Currently, this project is limited to the first phase of ADNI, which is comprised of 3.0T T1w scans (most typically MPRAGE or SAG3DMPRAGE) across five years. 
+Currently, this project is limited to the first phase of ADNI, which is comprised of raw 3.0T T1w scans (most typically MPRAGE or IR-FSPGR) across five years. 
 
 MRI data collected in this project is also limited to on-site assessment of the 15-point Geriatric Depression Scale (GDS) at the same visit.
 

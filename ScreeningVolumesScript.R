@@ -2,6 +2,7 @@
 library(dplyr)
 library(tidyr)
 library(data.table)
+library(purrr)
 
 # Timepoint-contingent variables that will be used for dplyr for dataframe. (GDS, age, Dx, CDR)
 gdsscreeningvalues <- GDSScreening # This includes age
@@ -79,49 +80,10 @@ volumes_dt_screening <-
                    y = globalvalues[, c(1, 2, 3, 4)],
                    by = "subject") 
 
-# Make sure it is a dataframe 
-nolistvolumes_dt_screening <- as.data.frame(volumes_dt_screening)
 
 #Change columns that were characters to factors so that residual function can work 
 volumes_dt_screening$Sex <- as.numeric(as.factor(volumes_dt_screening$Sex))
 volumes_dt_screening$Scanner_Site <- as.numeric(as.factor(volumes_dt_screening$Scanner_Site))
-
-#This is the previous residual function, but it was not working as lapply was passing 'y' columns as lists.
-vol_resid_func <- function(y) resid(lm(y ~ volumes_dt_screening$EstimatedTotalIntraCranialVol + volumes_dt_screening$eWBV + volumes_dt_screening$Age + volumes_dt_screening$Sex + volumes_dt_screening$Education + volumes_dt_screening$Scanner_Site, data = volumes_dt_screening))
-
-#This is the residual function that seems to work.
-vol_resid_func <- function(y) {
-  y <- unlist(y)
-  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
-}
-
-#Modfiication, removed NA data
-vol_resid_func <- function(y) {
-  y <- na.omit(unlist(y))
-  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
-}
-
-vol_resid_func <- function(y) {
-  y <- unlist(y)
-  print(length(y))
-  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
-}
-
-vol_resid_func <- function(y) {
-  y <- na.omit(unlist(y))
-  print(length(y))
-  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_dt_screening))
-}
-
-#Apply the function to the subset of data using lapply() 
-vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
-
-# I might want to apply it to the dependent variables that are numeric
-vol_resid <- as.data.frame(lapply(volumes_numerical[1:16], vol_resid_func))
-
-vol_resid_func <- function(y, data) {
-  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = data))
-}
 
 # Here I am trying to make the forumula work with the new dataframe that is numeric.
 
@@ -130,13 +92,27 @@ volumes_numerical <- data.frame(NULL)
 volumes_numerical <- volumes_dt_screening[, 2:17]
 volumes_numerical <- apply(volumes_numerical, 2, function(x) as.numeric(unlist(x)))
 volumes_numerical <- as.data.frame(volumes_numerical)
-volumes_numerical <- cbind(volumes_numerical, 
+# Check for duplicated rows
+duplicated_rows <- duplicated(volumes_numerical)
+
+# Print the duplicated rows
+print(volumes_numerical[duplicated_rows, ])
+
+# Remove duplicates
+volumes_numerical <- unique(volumes_numerical)
+volumes_numerical <- cbind(volumes_numerical,
+                           subject = volumes_dt_screening$subject,
                            EstimatedTotalIntraCranialVol = volumes_dt_screening$EstimatedTotalIntraCranialVol,
                            eWBV = volumes_dt_screening$eWBV,
                            Age = volumes_dt_screening$Age,
                            Sex = volumes_dt_screening$Sex,
                            Education = volumes_dt_screening$Education,
                            Scanner_Site = volumes_dt_screening$Scanner_Site)
+
+#Move subject column to the very left
+volumes_numerical <- 
+  volumes_numerical %>% 
+  dplyr::relocate(subject, .before = Sub_volumes_L)
 
 
 volumes_numerical <- as.data.frame(volumes_numerical)
@@ -145,57 +121,18 @@ vol_resid_func <- function(y) {
   lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_numerical)$resid
 }
 
-vol_resid <- as.data.frame(lapply(volumes_numerical[1:16], vol_resid_func))
-
-
-
-
-
-
-
+vol_resid <- as.data.frame(lapply(volumes_numerical[2:17], vol_resid_func))
 
 
 #Add the subject column
-vol_resid$subject <- subset_data$subject 
+vol_resid$subject <- volumes_numerical$subject 
 
 #Move subject column to the very left
 vol_resid <- 
   vol_resid %>% 
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
-# For summary, run the vol_resid_func function on the subregion variable
-sumvol_resid <- vol_resid_func(subset_data$Cyst_volumes_L)
-
-# Obtain the summary statistics for the linear regression model
-# Values are 0 across the board. Perhaps difference will be including entire dataframe.
-summary(sumvol_resid)
 
 
-length(volumes_dt_screening$EstimatedTotalIntraCranialVol)
-
-#I am going to try and turn all values to numeric in dataframe
-# Loop through all columns and convert to numeric
-
-# Convert list columns to numeric
-# Copy columns 2 to 17 to a new dataframe
-volumes_numerical <- volumes_dt_screening[, 2:17]
-
-# Convert the data in the new dataframe to numerical values
-volumes_numerical <- apply(volumes_numerical, 2, function(x) as.numeric(unlist(x)))
-
-
-
-vol_resid <- as.data.frame(lapply(volumes_dt_screening[2:17], vol_resid_func))
-
-vol_resid_func <- function(y) {
-  y <- unlist(y)
-  resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV, data = volumes_dt_screening))
-}
-
-vol_resid_func <- function(y) {
-  y <- unlist(y)
-  res <- resid(lm(y ~ EstimatedTotalIntraCranialVol + eWBV, data = volumes_dt_screening))
-  return(list(y = y, res = res))
-}
 
 
