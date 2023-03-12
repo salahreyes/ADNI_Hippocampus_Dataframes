@@ -14,7 +14,7 @@ cdrmonth12values <- CDR_Month12
 globalvalues <- GlobalInfoPhase1
 
 # Create variable that searches for TSV files in respective directory.
-file_list_month12 <- list.files(path = "/Volumes/LeCie/HippunFold_Outputs/Month_24", 
+file_list_month12 <- list.files(path = "D:/HippUnfold_Outputs/Month_12", 
                                 pattern = "*volumes*.tsv", 
                                 full.names = TRUE, 
                                 recursive = TRUE)
@@ -34,7 +34,7 @@ for(file in 1:length(file_list_month12)){
   
   # Split file path by /
   a <- strsplit(file_list_month12[file], 
-                split = "/")[[1]][6]
+                split = "/")[[1]][4]
   # Split file path by -
   b <- strsplit(a, 
                 split = "-")
@@ -101,7 +101,7 @@ volumes_numericalmonth12 <- data.frame(NULL)
 #volumes_numericalmonth12[] <- lapply(volumes_numericalmonth12, function(x) gsub("c\\(", "", x))
 #volumes_numericalmonth12 <- apply(volumes_numericalmonth12, 2, function(x) as.numeric(unlist(x)))
 
-
+volumes_numericalmonth12 <--data.frame(NULL)
 
 volumes_numericalmonth12 <- volumes_dt_month12[, 2:17]
 volumes_numericalmonth12 <- apply(volumes_numericalmonth12, 2, function(x) as.numeric(unlist(x)))
@@ -119,6 +119,9 @@ volumes_numericalmonth12 <- cbind(volumes_numericalmonth12,
                                   subject = volumes_dt_month12$subject,
                                   EstimatedTotalIntraCranialVol = volumes_dt_month12$EstimatedTotalIntraCranialVol,
                                   eWBV = volumes_dt_month12$eWBV,
+                                  GDS_Total_Score= volumes_dt_month12$`GDSCALE Total Score`,
+                                  DxCURREN = volumes_dt_month12$DXCURREN,
+                                  Global_CDR = volumes_dt_month12$`Global CDR`,
                                   Age = volumes_dt_month12$Age,
                                   Sex = volumes_dt_month12$Sex,
                                   Education = volumes_dt_month12$Education,
@@ -132,7 +135,6 @@ volumes_numericalmonth12 <-
 #Make sure the same subjects match my study, so save dataframe to csv
 #write.csv(volumes_numericalmonth12, "volumes_numericalmonth12checksubjects.csv", row.names = FALSE)
 
-volumes_numerical <- as.data.frame(volumes_numerical)
 
 vol_resid_func <- function(y) {
   lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_numericalmonth12)$resid
@@ -142,7 +144,7 @@ vol_residmonth12 <- as.data.frame(lapply(volumes_numericalmonth12[2:17], vol_res
 
 
 #Add the subject column
-vol_residmonth12$subject <- volumes_numerical$subject 
+vol_residmonth12$subject <- volumes_numericalmonth12$subject 
 
 #Move subject column to the very left
 vol_residmonth12 <- 
@@ -154,6 +156,16 @@ write.csv(vol_residmonth12, file = "vol_resid.csv", row.names = FALSE)
 
 # Save volumes_numerical as volumes_numerical.csv
 write.csv(volumes_numericalmonth12, file = "volumes_numericalmonth12.csv", row.names = FALSE)
+
+# Subset subjects with missing EstimatedIntraCranialVol values
+na_subjects <- volumes_dt_month12$subject[is.na(volumes_dt_month12$EstimatedTotalIntraCranialVol)]
+
+# Print number of subjects with missing values
+cat(sprintf("Number of subjects with missing EstimatedIntraCranialVol values: %d\n", length(na_subjects)))
+
+# Print list of subjects with missing values
+cat("List of subjects with missing EstimatedIntraCranialVol values:\n")
+cat(na_subjects, sep = "\n")
 
 
 
