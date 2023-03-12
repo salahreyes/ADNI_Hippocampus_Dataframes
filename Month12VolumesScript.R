@@ -133,7 +133,7 @@ volumes_numericalmonth12 <-
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
 #Make sure the same subjects match my study, so save dataframe to csv
-#write.csv(volumes_numericalmonth12, "volumes_numericalmonth12checksubjects.csv", row.names = FALSE)
+write.csv(volumes_numericalmonth12, "volumes_numericalmonth12checksubjects.csv", row.names = FALSE)
 
 
 vol_resid_func <- function(y) {
