@@ -1,4 +1,4 @@
-Subject ID,Sex,Age,GDSCALE Total Score,Description
+subject,Sex,Age,GDSCALE Total Score,Description
 002_S_0295,M,89,0,3-plane localizer
 002_S_0413,F,80.4,0,3-plane localizer
 002_S_0685,F,93.8,1,MP-RAGE

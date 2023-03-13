@@ -101,8 +101,6 @@ volumes_numericalmonth12 <- data.frame(NULL)
 #volumes_numericalmonth12[] <- lapply(volumes_numericalmonth12, function(x) gsub("c\\(", "", x))
 #volumes_numericalmonth12 <- apply(volumes_numericalmonth12, 2, function(x) as.numeric(unlist(x)))
 
-volumes_numericalmonth12 <--data.frame(NULL)
-
 volumes_numericalmonth12 <- volumes_dt_month12[, 2:17]
 volumes_numericalmonth12 <- apply(volumes_numericalmonth12, 2, function(x) as.numeric(unlist(x)))
 volumes_numericalmonth12 <- as.data.frame(volumes_numericalmonth12)
@@ -142,6 +140,15 @@ vol_resid_func <- function(y) {
 
 vol_residmonth12 <- as.data.frame(lapply(volumes_numericalmonth12[2:17], vol_resid_func))
 
+# Create a copy of the dataframe
+volumes_clean <- volumes_numericalmonth12
+
+# Subset the dataframe to only include rows with non-missing values in EstimatedTotalIntraCranialVol and eWBV
+volumes_clean <- volumes_clean[complete.cases(volumes_clean$EstimatedTotalIntraCranialVol, volumes_clean$eWBV), ]
+
+
+
+
 
 #Add the subject column
 vol_residmonth12$subject <- volumes_numericalmonth12$subject 
@@ -152,7 +159,7 @@ vol_residmonth12 <-
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
 # Save vol_resid as vol_resid.csv
-write.csv(vol_residmonth12, file = "vol_resid.csv", row.names = FALSE)
+write.csv(vol_residmonth12, file = "vol_residmonth12.csv", row.names = FALSE)
 
 # Save volumes_numerical as volumes_numerical.csv
 write.csv(volumes_numericalmonth12, file = "volumes_numericalmonth12.csv", row.names = FALSE)

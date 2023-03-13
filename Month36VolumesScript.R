@@ -167,6 +167,9 @@ cat(sprintf("Number of subjects with missing EstimatedIntraCranialVol values: %d
 cat("List of subjects with missing EstimatedIntraCranialVol values:\n")
 cat(na_subjects, sep = "\n")
 
+#check subjects
+volumes_numericalmonth36 <- cbind(volumes_dt_month36$subject)
+write.csv(volumes_numericalmonth36, "checkmonth36subjects.csv", row.names = FALSE)
 
 
 
