@@ -114,6 +114,13 @@ volumes_numerical <-
   volumes_numerical %>% 
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
+#Add timepoint value, move to very left
+volumes_numerical$timepoint <- 1
+
+volumes_numerical <- 
+  volumes_numerical %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
 
 volumes_numerical <- as.data.frame(volumes_numerical)
 
@@ -132,11 +139,19 @@ vol_resid <-
   vol_resid %>% 
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
+#Add timepoint 
+
+vol_resid$timepoint <- 1
+
+vol_resid <- 
+  vol_resid %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
 # Save vol_resid as vol_resid.csv
-write.csv(vol_resid, file = "vol_resid.csv", row.names = FALSE)
+write.csv(vol_resid, file = "vol_residscreening.csv", row.names = FALSE)
 
 # Save volumes_numerical as volumes_numerical.csv
-write.csv(volumes_numerical, file = "volumes_numerical.csv", row.names = FALSE)
+write.csv(volumes_numerical, file = "volumes_numericalscreening.csv", row.names = FALSE)
 
 
 
