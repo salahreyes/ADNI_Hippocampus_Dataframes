@@ -145,18 +145,43 @@ vol_residmonth24 <- as.data.frame(lapply(volumes_numericalmonth24[2:17], vol_res
 
 
 #Add the subject column
-vol_residmonth24$subject <- volumes_numerical$subject 
+vol_residmonth24$subject <- volumes_numericalmonth24$subject 
 
 #Move subject column to the very left
 vol_residmonth24 <- 
   vol_residmonth24 %>% 
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
+#Add timepoint values to both dataframes
+
+volumes_numericalmonth24$timepoint <- 3
+
+volumes_numericalmonth24 <-
+  volumes_numericalmonth24 %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
+vol_residmonth24$timepoint <- 3 
+
+vol_residmonth24 <-
+  vol_residmonth24 %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
 # Save vol_resid as vol_resid.csv
-write.csv(vol_residmonth24, file = "vol_resid.csv", row.names = FALSE)
+write.csv(vol_residmonth24, file = "vol_residmonth24.csv", row.names = FALSE)
 
 # Save volumes_numerical as volumes_numerical.csv
 write.csv(volumes_numericalmonth24, file = "volumes_numericalmonth24.csv", row.names = FALSE)
+
+# Get row indices with missing values in a given column
+col_name <- "some_column"
+na_rows <- which(is.na(volumes_numericalmonth24[[col_name]]))
+
+# Print number of rows with missing values
+cat(sprintf("Number of rows with missing %s values: %d\n", col_name, length(na_rows)))
+
+# Print rows with missing values
+cat("Rows with missing values:\n")
+print(volumes_numericalmonth24[na_rows,])
 
 
 
