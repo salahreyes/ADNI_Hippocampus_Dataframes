@@ -151,8 +151,22 @@ vol_residmonth36 <-
   vol_residmonth36 %>% 
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
+#Add timepoint values to both dataframes
+
+volumes_numericalmonth36$timepoint <- 4
+
+volumes_numericalmonth36 <-
+  volumes_numericalmonth36 %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
+vol_residmonth36$timepoint <- 4 
+
+vol_residmonth36 <-
+  vol_residmonth36 %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
 # Save vol_resid as vol_resid.csv
-write.csv(vol_residmonth36, file = "vol_resid.csv", row.names = FALSE)
+write.csv(vol_residmonth36, file = "vol_residmonth36.csv", row.names = FALSE)
 
 # Save volumes_numerical as volumes_numerical.csv
 write.csv(volumes_numericalmonth36, file = "volumes_numericalmonth36.csv", row.names = FALSE)
