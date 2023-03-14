@@ -146,7 +146,19 @@ volumes_clean <- volumes_numericalmonth12
 # Subset the dataframe to only include rows with non-missing values in EstimatedTotalIntraCranialVol and eWBV
 volumes_clean <- volumes_clean[complete.cases(volumes_clean$EstimatedTotalIntraCranialVol, volumes_clean$eWBV), ]
 
+#Add timepoint values to both dataframes
 
+volumes_numericalmonth12$timepoint <- 2
+
+volumes_numericalmonth12 <-
+  volumes_numericalmonth12 %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
+vol_residmonth12$timepoint <- 2 
+
+vol_residmonth12 <-
+  vol_residmonth12 %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
 
 
 
