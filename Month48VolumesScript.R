@@ -89,13 +89,13 @@ volumes_dt_month48$Scanner_Site <- as.numeric(as.factor(volumes_dt_month48$Scann
 
 volumes_numericalmonth48 <- data.frame(NULL)
 
-#sum(is.na(volumes_dt_month48))
+sum(is.na(volumes_dt_month48))
 
-#sum(is.na(volumes_numericalmonth48))
+sum(is.na(volumes_numericalmonth48))
 
-#sum(duplicated(volumes_dt_month48))
+sum(duplicated(volumes_dt_month48))
 
-#sum(duplicated(volumes_numericalmonth48))
+sum(duplicated(volumes_numericalmonth48))
 
 #volumes_numericalmonth48 <- volumes_dt_month48[, 2:17]
 #volumes_numericalmonth48[] <- lapply(volumes_numericalmonth48, function(x) gsub("c\\(", "", x))
@@ -151,8 +151,22 @@ vol_residmonth48 <-
   vol_residmonth48 %>% 
   dplyr::relocate(subject, .before = Sub_volumes_L)
 
+#Add timepoint values to both dataframes
+
+volumes_numericalmonth48$timepoint <- 5
+
+volumes_numericalmonth48 <-
+  volumes_numericalmonth48 %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
+vol_residmonth48$timepoint <- 5 
+
+vol_residmonth48 <-
+  vol_residmonth48 %>% 
+  dplyr::relocate(timepoint, .before = Sub_volumes_L)
+
 # Save vol_resid as vol_resid.csv
-write.csv(vol_residmonth48, file = "vol_resid.csv", row.names = FALSE)
+write.csv(vol_residmonth48, file = "vol_residmonth48.csv", row.names = FALSE)
 
 # Save volumes_numerical as volumes_numerical.csv
 write.csv(volumes_numericalmonth48, file = "volumes_numericalmonth48.csv", row.names = FALSE)
