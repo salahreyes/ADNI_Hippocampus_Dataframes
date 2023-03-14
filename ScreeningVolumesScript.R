@@ -104,6 +104,9 @@ volumes_numerical <- cbind(volumes_numerical,
                            subject = volumes_dt_screening$subject,
                            EstimatedTotalIntraCranialVol = volumes_dt_screening$EstimatedTotalIntraCranialVol,
                            eWBV = volumes_dt_screening$eWBV,
+                           GDS_Total_Score= volumes_dt_screening$`GDSCALE Total Score`,
+                           DxCURREN = volumes_dt_screening$DXCURREN,
+                           Global_CDR = volumes_dt_screening$`Global CDR`,
                            Age = volumes_dt_screening$Age,
                            Sex = volumes_dt_screening$Sex,
                            Education = volumes_dt_screening$Education,
@@ -141,14 +144,14 @@ vol_resid <-
 
 #Add timepoint 
 
-vol_resid$timepoint <- 1
+vol_residscreening$timepoint <- 1
 
-vol_resid <- 
-  vol_resid %>% 
+vol_residscreening <- 
+  vol_residscreening %>% 
   dplyr::relocate(timepoint, .before = Sub_volumes_L)
 
 # Save vol_resid as vol_resid.csv
-write.csv(vol_resid, file = "vol_residscreening.csv", row.names = FALSE)
+write.csv(vol_residscreening, file = "vol_residscreening.csv", row.names = FALSE)
 
 # Save volumes_numerical as volumes_numerical.csv
 write.csv(volumes_numerical, file = "volumes_numericalscreening.csv", row.names = FALSE)
