@@ -7,7 +7,7 @@ library(purrr)
 # Timepoint-contingent variables that will be used for dplyr for dataframe. (GDS, age, Dx, CDR)
 gdsscreeningvalues <- GDSScreening # This includes age
 diagscreening <- DxScreening # Has info on dementia diagnosis as well as conversion status from previous timepoint.
-freesurfvols <- freesurferscreening
+freesurfvols <- longfreesurfscreening
 cdrsscreeningvalues <- CDR_Screening
 
 # Global variables (sex, education, site) that will be used for dplyr for dataframe.
@@ -55,7 +55,7 @@ volumes_dt_screening <-
   # Add etiv data (currently an example of first 5 subjects, have to move freesurfer outputs to Mac.)
   # I do have Ubuntu installed on Windows to install freesurfer 7.2, but encountering errors.
   dplyr::left_join(x =.,
-                   y = freesurfvols[, c(2, 66, 67)],
+                   y = freesurfvols[, c(2, 65, 66)],
                    by = "subject") %>% 
   
   
@@ -131,7 +131,7 @@ vol_resid_func <- function(y) {
   lm(y ~ EstimatedTotalIntraCranialVol + eWBV + Age + Sex + Education + Scanner_Site, data = volumes_numerical)$resid
 }
 
-vol_resid <- as.data.frame(lapply(volumes_numerical[2:17], vol_resid_func))
+vol_resid <- as.data.frame(lapply(volumes_numerical[3:18], vol_resid_func))
 
 
 #Add the subject column
@@ -144,17 +144,16 @@ vol_resid <-
 
 #Add timepoint 
 
-vol_residscreening$timepoint <- 1
+vol_resid$timepoint <- 1
 
-vol_residscreening <- 
-  vol_residscreening %>% 
+vol_resid <- 
+  vol_resid %>% 
   dplyr::relocate(timepoint, .before = Sub_volumes_L)
 
 # Save vol_resid as vol_resid.csv
-write.csv(vol_residscreening, file = "vol_residscreening.csv", row.names = FALSE)
+write.csv(vol_resid, file = "vol_residscreeningnew.csv", row.names = FALSE)
 
-# Save volumes_numerical as volumes_numerical.csv
-write.csv(volumes_numerical, file = "volumes_numericalscreening.csv", row.names = FALSE)
+
 
 
 

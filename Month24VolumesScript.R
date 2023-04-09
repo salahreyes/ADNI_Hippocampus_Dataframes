@@ -7,7 +7,7 @@ library(purrr)
 # Timepoint-contingent variables that will be used for dplyr for dataframe. (GDS, age, Dx, CDR)
 gdsmonth24values <- GDSMonth24 # This includes age
 diagmonth24 <- DxMonth24 # Has info on dementia diagnosis as well as conversion status from previous timepoint.
-freesurfvolsmonth24 <- freesurfermonth24
+freesurfvolsmonth24 <- longfreesurfmonth24
 cdrmonth24values <- CDR_Month24
 
 # Global variables (sex, education, site) that will be used for dplyr for dataframe.
@@ -55,7 +55,7 @@ volumes_dt_month24 <-
   # Add etiv data (currently an example of first 5 subjects, have to move freesurfer outputs to Mac.)
   # I do have Ubuntu installed on Windows to install freesurfer 7.2, but encountering errors.
   dplyr::left_join(x =.,
-                   y = freesurfvolsmonth24[, c(2, 66, 67)],
+                   y = freesurfvolsmonth24[, c(2, 65, 66)],
                    by = "subject") %>% 
   
   
@@ -167,21 +167,9 @@ vol_residmonth24 <-
   dplyr::relocate(timepoint, .before = Sub_volumes_L)
 
 # Save vol_resid as vol_resid.csv
-write.csv(vol_residmonth24, file = "vol_residmonth24.csv", row.names = FALSE)
+write.csv(vol_residmonth24, file = "vol_residmonth24new.csv", row.names = FALSE)
 
-# Save volumes_numerical as volumes_numerical.csv
-write.csv(volumes_numericalmonth24, file = "volumes_numericalmonth24.csv", row.names = FALSE)
 
-# Get row indices with missing values in a given column
-col_name <- "some_column"
-na_rows <- which(is.na(volumes_numericalmonth24[[col_name]]))
-
-# Print number of rows with missing values
-cat(sprintf("Number of rows with missing %s values: %d\n", col_name, length(na_rows)))
-
-# Print rows with missing values
-cat("Rows with missing values:\n")
-print(volumes_numericalmonth24[na_rows,])
 
 
 

@@ -1,0 +1,80 @@
+---
+title: "longitudinal_brms_example"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+# Create a dummy data frame
+data_df <- data.frame(
+  participant = rep(1:10, each = 3), # 10 participants with 3 measurements each
+  region = rep(c("hippocampus_l", "hippocampus_r"), each = 15), # Two regions of interest
+  parameter = rep(c("thickness", "volume", "gyrification"), 10*2), # Three parameters of interest
+  time = rep(c(0, 1, 2), 20), # Three time points
+  response = rnorm(30) # Simulated response data
+)
+
+# Fit the model
+library(brms)
+fit <- brm(
+  formula = response ~ parameter * time + region  + (1 + time | region/participant) + (1 | participant),
+  data = data_df,
+  family = gaussian(),
+  cores = 8
+)
+
+# Summarize the model
+summary(fit)
+
+
+# Extract parameter estimates for each ROI using tidy()
+library(broom.mixed)
+model_tidy <- tidy(fit, effects = "fixed", conf.int = TRUE,parameters = "region")
+
+
+```
+
+***Sample write-up***
+
+We fitted a hierarchical linear model to investigate the effect of parameter values and time on response, while accounting for potential variation across participants and regions. The model had a Gaussian family with identity links for the mean and standard deviation. The response variable was regressed on parameter, time, and region, and their interactions. We also included random intercepts and slopes for time within region/participant and random intercepts for participant.
+
+We obtained the following estimates for the group-level effects. The standard deviation of the intercepts across participants was 0.74 (95% CI: 0.20, 1.72), while the standard deviation of the intercepts across regions was 2.25 (95% CI: 0.09, 6.57) and the standard deviation of the slopes for time within regions was 0.78 (95% CI: 0.03, 2.81). The correlation between the intercepts and slopes for time within regions was 0.20 (95% CI: -0.88, 0.90), indicating that the participants who had higher initial responses tended to have smaller increases in response over time.
+
+For the population-level effects, we found a significant effect of parameter thickness (estimate = 1383.80, 95% CI: -953.22, 3743.42) and time (estimate = 691.39, 95% CI: -476.89, 1871.05) on response. The parameter volume also had a positive effect, but the estimate was not statistically significant (estimate = 1287.87, 95% CI: -1989.75, 5526.11). The interaction between parameter thickness and time had a strong positive effect (estimate = 385860.86, 95% CI: -28388.51, 2527200.97), indicating that the effect of parameter thickness on response depended on the time. The interaction between parameter volume and time did not have a statistically significant effect (estimate = -596.61, 95% CI: -4501.26, 2811.25).
+
+Finally, we estimated the residual standard deviation to be 0.77 (95% CI: 0.63, 0.93), indicating the amount of unexplained variability in the response after accounting for the fixed and random effects. The model had four chains, each with iter = 2000; warmup = 1000; thin = 1, resulting in a total post-warmup draws of 4000. The effective sample size measures for each parameter (Bulk_ESS and Tail_ESS) were reported to evaluate the adequacy of the number of iterations. The potential scale reduction factor (Rhat) was also reported to assess the convergence of the chains (Rhat = 1 indicates convergence).
+
+```{r}
+library(ggplot2)
+
+ggplot(data_df, aes(x = time, y = response, color = region)) +
+  geom_point(size = 3) +
+  facet_wrap(~ participant) +
+  labs(x = "Time", y = "Response", color = "Region") +
+  theme_bw()
+
+
+library(bayesplot)
+
+# Plot posterior distributions for the population-level intercept and slope parameters
+posterior <- as.matrix(fit)
+
+plot_title <- ggtitle("Posterior distributions",
+                      "with medians and 80% intervals")
+mcmc_areas(posterior,
+           pars = c("b_parameterthickness", "b_parametervolume", "b_time", "b_parameterthickness:time","b_parametervolume:time", "b_regionhippocampus_r", "r_region[hippocampus_l,time]","r_region[hippocampus_r,time]"),
+           prob = 0.8) + plot_title
+```
+
+```{r}
+ce <- conditional_effects(fit, effects = c("parameter","region", "participant","time", "region:time", "parameter:region"))
+ce$`parameter:region`
+```
