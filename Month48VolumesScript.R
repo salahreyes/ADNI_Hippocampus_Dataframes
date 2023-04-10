@@ -7,7 +7,7 @@ library(purrr)
 # Timepoint-contingent variables that will be used for dplyr for dataframe. (GDS, age, Dx, CDR)
 gdsmonth48values <- GDSMonth48 # This includes age
 diagmonth48 <- DxMonth48 # Has info on dementia diagnosis as well as conversion status from previous timepoint.
-freesurfvolsmonth48 <- freesurfermonth48
+freesurfvolsmonth48 <- longfreesurfmonth48
 cdrmonth48values <- CDR_Month48
 
 # Global variables (sex, education, site) that will be used for dplyr for dataframe.
@@ -55,7 +55,7 @@ volumes_dt_month48 <-
   # Add etiv data (currently an example of first 5 subjects, have to move freesurfer outputs to Mac.)
   # I do have Ubuntu installed on Windows to install freesurfer 7.2, but encountering errors.
   dplyr::left_join(x =.,
-                   y = freesurfvolsmonth48[, c(2, 66, 67)],
+                   y = freesurfvolsmonth48[, c(2, 65, 66)],
                    by = "subject") %>% 
   
   
@@ -166,24 +166,5 @@ vol_residmonth48 <-
   dplyr::relocate(timepoint, .before = Sub_volumes_L)
 
 # Save vol_resid as vol_resid.csv
-write.csv(vol_residmonth48, file = "vol_residmonth48.csv", row.names = FALSE)
-
-# Save volumes_numerical as volumes_numerical.csv
-write.csv(volumes_numericalmonth48, file = "volumes_numericalmonth48.csv", row.names = FALSE)
-
-# Subset subjects with missing EstimatedIntraCranialVol values
-na_subjects <- volumes_dt_month48$subject[is.na(volumes_dt_month48$EstimatedTotalIntraCranialVol)]
-
-# Print number of subjects with missing values
-cat(sprintf("Number of subjects with missing EstimatedIntraCranialVol values: %d\n", length(na_subjects)))
-
-# Print list of subjects with missing values
-cat("List of subjects with missing EstimatedIntraCranialVol values:\n")
-cat(na_subjects, sep = "\n")
-
-#check subjects
-volumes_numericalmonth48 <- cbind(volumes_dt_month48$subject)
-write.csv(volumes_numericalmonth48, "checkmonth48subjects.csv", row.names = FALSE)
-
-
+write.csv(vol_residmonth48, file = "vol_residmonth48new.csv", row.names = FALSE)
 

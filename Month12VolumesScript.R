@@ -7,7 +7,7 @@ library(purrr)
 # Timepoint-contingent variables that will be used for dplyr for dataframe. (GDS, age, Dx, CDR)
 gdsmonth12values <- GDSMonth12 # This includes age
 diagmonth12 <- DxMonth12 # Has info on dementia diagnosis as well as conversion status from previous timepoint.
-freesurfvolsmonth12 <- freesurfermonth12
+freesurfvolsmonth12 <- longfreesurfmonth12
 cdrmonth12values <- CDR_Month12
 
 # Global variables (sex, education, site) that will be used for dplyr for dataframe.
@@ -55,7 +55,7 @@ volumes_dt_month12 <-
   # Add etiv data (currently an example of first 5 subjects, have to move freesurfer outputs to Mac.)
   # I do have Ubuntu installed on Windows to install freesurfer 7.2, but encountering errors.
   dplyr::left_join(x =.,
-                   y = freesurfvolsmonth12[, c(2, 66, 67)],
+                   y = freesurfvolsmonth12[, c(2, 65, 66)],
                    by = "subject") %>% 
   
   
@@ -140,11 +140,6 @@ vol_resid_func <- function(y) {
 
 vol_residmonth12 <- as.data.frame(lapply(volumes_numericalmonth12[2:17], vol_resid_func))
 
-# Create a copy of the dataframe
-volumes_clean <- volumes_numericalmonth12
-
-# Subset the dataframe to only include rows with non-missing values in EstimatedTotalIntraCranialVol and eWBV
-volumes_clean <- volumes_clean[complete.cases(volumes_clean$EstimatedTotalIntraCranialVol, volumes_clean$eWBV), ]
 
 #Add timepoint values to both dataframes
 
@@ -168,23 +163,12 @@ vol_residmonth12$subject <- volumes_numericalmonth12$subject
 #Move subject column to the very left
 vol_residmonth12 <- 
   vol_residmonth12 %>% 
-  dplyr::relocate(subject, .before = Sub_volumes_L)
+  dplyr::relocate(subject, .before = timepoint)
 
 # Save vol_resid as vol_resid.csv
-write.csv(vol_residmonth12, file = "vol_residmonth12.csv", row.names = FALSE)
+write.csv(vol_residmonth12, file = "vol_residmonth12new.csv", row.names = FALSE)
 
-# Save volumes_numerical as volumes_numerical.csv
-write.csv(volumes_numericalmonth12, file = "volumes_numericalmonth12.csv", row.names = FALSE)
 
-# Subset subjects with missing EstimatedIntraCranialVol values
-na_subjects <- volumes_dt_month12$subject[is.na(volumes_dt_month12$EstimatedTotalIntraCranialVol)]
-
-# Print number of subjects with missing values
-cat(sprintf("Number of subjects with missing EstimatedIntraCranialVol values: %d\n", length(na_subjects)))
-
-# Print list of subjects with missing values
-cat("List of subjects with missing EstimatedIntraCranialVol values:\n")
-cat(na_subjects, sep = "\n")
 
 
 
