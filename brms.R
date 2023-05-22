@@ -1,5 +1,7 @@
 install.packages("brms")
 library(brms)
+install.packages("easystats")
+library(easystats)
 
 #Group subfields into hemispheres
 #left_cols <- grep("_L", names(combined_volumes), value = TRUE)
@@ -17,7 +19,7 @@ fit <- brm(
   formula = Sub_volumes_L + Sub_volumes_R + CA1_volumes_L + CA1_volumes_R + CA2_volumes_L + CA2_volumes_R 
   + CA3_volumes_L + CA3_volumes_R + CA4_volumes_L + CA4_volumes_R + DG_volumes_L + DG_volumes_R 
   + SRLM_volumes_L + SRLM_volumes_R + Cyst_volumes_L + Cyst_volumes_R  ~  DxCURREN + GDS_Total_Score + timepoint + (1 + timepoint|subject), 
-  data = combined_residuals,
+  data = combined_residualsnew,
   family = gaussian(),
   prior = c(
     prior(normal(0, 10), class = "b"),
@@ -38,13 +40,13 @@ result<- p_direction(fit)
 plot(result)
 
 # create interaction variable
-combined_residuals$gds_time_dx <- combined_residuals$GDS_Total_Score * combined_residuals$timepoint * combined_residuals$DxCURREN
+combined_residualsnew$gds_time_dx <- combined_residualsnew$GDS_Total_Score * combined_residualsnew$timepoint * combined_residualsnew$DxCURREN
 
 fit <- brm(
   formula = Sub_volumes_L + Sub_volumes_R + CA1_volumes_L + CA1_volumes_R + CA2_volumes_L + CA2_volumes_R 
   + CA3_volumes_L + CA3_volumes_R + CA4_volumes_L + CA4_volumes_R + DG_volumes_L + DG_volumes_R 
   + SRLM_volumes_L + SRLM_volumes_R + Cyst_volumes_L + Cyst_volumes_R  ~  DxCURREN + GDS_Total_Score + timepoint + gds_time_dx + (1 + timepoint|subject), 
-  data = combined_residuals,
+  data = combined_residualsnew,
   family = gaussian(),
   prior = c(
     prior(normal(0, 10), class = "b"),
@@ -63,7 +65,7 @@ model <- brm(CA1_volumes_L ~ GDS_Total_Score + timepoint + DxCURREN + gds_time_d
 
 fit_L <- brm(
   formula = Sub_volumes_L + CA1_volumes_L + CA2_volumes_L + CA3_volumes_L + CA4_volumes_L + DG_volumes_L + SRLM_volumes_L + Cyst_volumes_L ~ DxCURREN + GDS_Total_Score + timepoint + (1 + timepoint | subject),
-  data = combined_residuals,
+  data = combined_residualsnew,
   family = gaussian(),
   prior = c(
     prior(normal(0, 10), class = "b"),
@@ -82,7 +84,7 @@ plot(result_L)
 
 fit_R <- brm(
   formula = Sub_volumes_R + CA1_volumes_R + CA2_volumes_R + CA3_volumes_R + CA4_volumes_R + DG_volumes_R + SRLM_volumes_R + Cyst_volumes_R ~ DxCURREN + GDS_Total_Score + timepoint + (1 + timepoint | subject),
-  data = combined_residuals,
+  data = combined_residualsnew,
   family = gaussian(),
   prior = c(
     prior(normal(0, 10), class = "b"),
@@ -148,3 +150,83 @@ for (var in response_vars) {
   fit_and_plot(var)
 }
 
+fitgds <- brm(
+  formula = Sub_volumes_L + Sub_volumes_R + CA1_volumes_L + CA1_volumes_R + CA2_volumes_L + CA2_volumes_R 
+  + CA3_volumes_L + CA3_volumes_R + CA4_volumes_L + CA4_volumes_R + DG_volumes_L + DG_volumes_R 
+  + SRLM_volumes_L + SRLM_volumes_R + Cyst_volumes_L + Cyst_volumes_R ~  DxCURREN + GDS_Total_Score + timepoint + gds_time_dx + (1 + gds_time_dx|subject), 
+  data = combined_residualsnew,
+  family = gaussian(),
+  prior = c(
+    prior(normal(0, 10), class = "b"),
+    prior(student_t(3, 0, 10), class = "sd"),
+    prior(student_t(3, 0, 10), class = "sigma")
+  ),
+  iter = 4000,
+  warmup = 1000,
+  chains = 4,
+  cores = 4
+)
+
+summary(fitgds) 
+
+result<- p_direction(fitgds)
+
+plot(result)
+
+fit3 <- brm(
+  formula = Sub_volumes_L + Sub_volumes_R + CA1_volumes_L + CA1_volumes_R + CA2_volumes_L + CA2_volumes_R 
+  + CA3_volumes_L + CA3_volumes_R + CA4_volumes_L + CA4_volumes_R + DG_volumes_L + DG_volumes_R 
+  + SRLM_volumes_L + SRLM_volumes_R + Cyst_volumes_L + Cyst_volumes_R ~ GDS_Total_Score + DxCURREN + 
+    GDS_Total_Score:DxCURREN + (1 + timepoint|subject),
+  data = combined_residualsnew,
+  family = gaussian(),
+  prior = c(
+    prior(normal(0, 10), class = "b"),
+    prior(student_t(3, 0, 10), class = "sd"),
+    prior(student_t(3, 0, 10), class = "sigma")
+  ),
+  iter = 4000,
+  warmup = 1000,
+  chains = 4,
+  cores = 4
+)
+
+summary(fit3)
+
+result3<- p_direction(fit3)
+
+plot(result3)
+
+
+fit4 <- brm(
+  formula = Sub_volumes_L + Sub_volumes_R + CA1_volumes_L + CA1_volumes_R + CA2_volumes_L + CA2_volumes_R 
+  + CA3_volumes_L + CA3_volumes_R + CA4_volumes_L + CA4_volumes_R + DG_volumes_L + DG_volumes_R 
+  + SRLM_volumes_L + SRLM_volumes_R + Cyst_volumes_L + Cyst_volumes_R ~ GDS_Total_Score + DxCURREN + 
+    DxCURREN:GDS_Total_Score + (1 + timepoint|subject),
+  data = combined_residualsnew,
+  family = gaussian(),
+  prior = c(
+    prior(normal(0, 10), class = "b"),
+    prior(student_t(3, 0, 10), class = "sd"),
+    prior(student_t(3, 0, 10), class = "sigma")
+  ),
+  iter = 4000,
+  warmup = 1000,
+  chains = 4,
+  cores = 4
+)
+
+summary(fit4)
+
+result4 <- p_direction(fit4)
+
+plot(result4)
+
+fit5 <- brm(Sub_volumes_L + Sub_volumes_R + CA1_volumes_L + CA1_volumes_R + CA2_volumes_L + 
+              CA2_volumes_R + CA3_volumes_L + CA3_volumes_R + CA4_volumes_L + CA4_volumes_R + DG_volumes_L + 
+              DG_volumes_R + SRLM_volumes_L + SRLM_volumes_R + Cyst_volumes_L + Cyst_volumes_R ~ GDS_Total_Score + 
+              DxCURREN + GDS_Total_Score:DxCURREN + DxCURREN:GDS_Total_Score + (1 + timepoint | subject),
+            data = combined_residualsnew, family = gaussian())
+summary(fit5)
+result <- p_direction(fit5)
+plot(result)

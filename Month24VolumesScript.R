@@ -162,13 +162,11 @@ volumes_numericalmonth24 <-
 
 vol_residmonth24$timepoint <- 3 
 
-vol_residmonth24 <-
-  vol_residmonth24 %>% 
-  dplyr::relocate(timepoint, .before = Sub_volumes_L)
 
 # Save vol_resid as vol_resid.csv
 write.csv(vol_residmonth24, file = "vol_residmonth24new.csv", row.names = FALSE)
 
+write.csv(volumes_numericalmonth24, file = "volumes_numericalmonth24new.csv", row.names = FALSE)
 
 
 

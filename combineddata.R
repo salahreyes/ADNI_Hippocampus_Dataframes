@@ -1,9 +1,9 @@
 #Create variables so that they can be ready for combined dataframe
-voltime1 <- volumes_numericalscreening
-voltime2 <- volumes_numericalmonth12
-voltime3 <- volumes_numericalmonth24
-voltime4 <- volumes_numericalmonth36
-voltime5 <- volumes_numericalmonth48
+voltime1 <- vol_residscreeningnew
+voltime2 <- vol_residmonth12new
+voltime3 <- vol_residmonth24new
+voltime4 <- vol_residmonth36new
+voltime5 <- vol_residmonth48new
 
 # get column names for each data frame
 names_voltime1 <- colnames(voltime1)
@@ -29,4 +29,4 @@ combined_volumes <- rbind(voltime1, voltime2, voltime3, voltime4, voltime5)
 
 combined_volumes <- combined_volumes[order(combined_volumes$subject), ]
 
-write.csv(combined_volumes, "combined_volumes.csv", row.names = FALSE)
+write.csv(combined_volumes, "combined_residualsnew.csv", row.names = FALSE)

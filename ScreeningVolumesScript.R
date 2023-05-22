@@ -150,6 +150,10 @@ vol_resid <-
   vol_resid %>% 
   dplyr::relocate(timepoint, .before = Sub_volumes_L)
 
+vol_resid <- cbind(vol_resid,
+                            DxCURREN = volumes_numerical$DxCURREN,
+                            GDS_Total_Score = volumes_numerical$GDS_Total_Score)
+
 # Save vol_resid as vol_resid.csv
 write.csv(vol_resid, file = "vol_residscreeningnew.csv", row.names = FALSE)
 
